@@ -50,7 +50,18 @@ function previewImage(event) {
     .then(response => response.json())
     .then(data => {
       if (data.prediction !== undefined) {
-        resultDiv.textContent = `Predicted snake: ${data.prediction}`;
+        const snakeLinks = {
+            "Ahaetulla nasuta": "https://www.inaturalist.org/taxa/68528-Ahaetulla-nasuta",
+           "Bungarus multicinctus": "https://www.inaturalist.org/taxa/30442-Bungarus-multicinctus",
+           "Naja naja" : "https://www.inaturalist.org/taxa/53492-Naja-naja",
+           "Python molurus" : "https://www.inaturalist.org/taxa/32150-Python-molurus",
+
+          };
+      
+          const snakeName = data.prediction;
+          const snakeLink = snakeLinks[snakeName] || "#"; // Default to '#' if no link is found
+      
+          resultDiv.innerHTML = `Predicted snake: <a href="${snakeLink}" target="_blank">${snakeName}</a>`;
       } else {
         resultDiv.textContent = `Error: ${data.error || "Unknown error"}`;
       }
