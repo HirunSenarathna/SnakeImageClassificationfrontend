@@ -1,24 +1,40 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Snake Image Classification</title>
+  <title>Snake Classification</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="container">
-    <h1>Snake Image Classification</h1>
-    <p id="uploadText">Upload an image to classify a snake species.</p>
+    <h1>Snake Classification</h1>
+    <p id="uploadText">Upload an image or video to classify a snake species.</p>
     
+    <!-- Image Upload -->
     <input type="file" id="imageUpload" accept="image/*" onchange="previewImage(event)">
     <br>
     <img id="preview" src="" alt="Image Preview">
     <br>
     <button id="classifyButton" onclick="submitImage()" disabled>Classify Image</button>
+
+    <hr>
+
+    <!-- Video Upload -->
+    <input type="file" id="videoUpload" accept="video/*" onchange="previewVideo(event)">
+    <br>
+    <video id="videoPreview" controls></video>
+    <br>
+    <button id="classifyVideoButton" onclick="submitVideo()" disabled>Classify Video</button>
     
-    <p id="loading">Processing image, please wait...</p>
+    <p id="loading" style="display: none;">Processing, please wait...</p>
+    
+    <!-- Result Display -->
     <div id="result"></div>
+    <div id="predictionResult">
+      <h2>Prediction:</h2>
+      <p><strong>Snake Species:</strong> <span id="finalClass">N/A</span></p>
+      <p><strong>Confidence:</strong> <span id="avgConfidence">N/A</span></p>
+    </div>
   </div>
 
   <script src="script.js"></script>
